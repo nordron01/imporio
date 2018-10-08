@@ -159,7 +159,7 @@ $(document).ready(function() {
                         }
 
                     }
-                    //console.log('t'+t);	
+                    //console.log('t'+t);   
                     if (k == heightDraw && t < widthDraw) {
                         j++;
                         t = 0;
@@ -168,21 +168,21 @@ $(document).ready(function() {
                     }
                     if (k == heightDraw && t == widthDraw) {
                         /*
-					console.log('i'+i+' j'+j);
-					peremen = startdrawG(20,4,i,j+(20-heightDraw));
-					console.log(peremen); 	
-					if(peremen.rdy == true){
-						break;
-					}else{
-					j++;
-					k = 0;
-					i = 0;
-					t = 0;
-					}
-				if(k == heightDraw && t == widthDraw  && peremen.rdy == true)	{
-					break;	
-				}
-					*/
+                    console.log('i'+i+' j'+j);
+                    peremen = startdrawG(20,4,i,j+(20-heightDraw));
+                    console.log(peremen);   
+                    if(peremen.rdy == true){
+                        break;
+                    }else{
+                    j++;
+                    k = 0;
+                    i = 0;
+                    t = 0;
+                    }
+                if(k == heightDraw && t == widthDraw  && peremen.rdy == true)   {
+                    break;  
+                }
+                    */
                         break;
                     }
                 }
@@ -200,8 +200,8 @@ $(document).ready(function() {
             }
             if (i == m) {
                 console.log('как такэ');
-                console.log('wd'+widthDraw+' j'+j+' n'+n);
-                console.log('wh'+heightDraw+' i'+i+' m'+m);
+                console.log('wd' + widthDraw + ' j' + j + ' n' + n);
+                console.log('wh' + heightDraw + ' i' + i + ' m' + m);
                 j++;
                 k = 0;
                 i = -1;
@@ -211,7 +211,7 @@ $(document).ready(function() {
 
 
             if (widthDraw + j <= n) {
-                
+
 
             } else {
                 rdy = false;
@@ -501,15 +501,15 @@ $(document).ready(function() {
                     /* 
                     for(var q = j; q < j+widthDraw; q++){
                     if(globmass.mas[i][q]  == 0 ){
-                    	console.log('i'+i+' j'+j);
-                    	t++;
+                        console.log('i'+i+' j'+j);
+                        t++;
                     }else {
                     console.log( 'Перескок');
                     j= n-1;
                     }
 
                     }
-                    console.log('t'+t);		
+                    console.log('t'+t);     
                     */
                     break;
 
@@ -611,13 +611,13 @@ $(document).ready(function() {
 
 
 
-    $("#drawq").click( function() {
+    $("#drawq").click(function() {
 
 
         var heightDrawSQ = 0;
         var widthDrawSQ = 0;
         var startes = [];
-        qw = $("#qw").val();   
+        qw = $("#qw").val();
         qh = $("#qh").val();
 
 
@@ -656,7 +656,7 @@ $(document).ready(function() {
 
 
 
-        
+
 
 
     document.getElementById('Optimaze').addEventListener("click", function() {
@@ -701,162 +701,162 @@ $(document).ready(function() {
     document.getElementById('Test').addEventListener("click", function() {
         /*
         globobjarray = [
-        	{
-        				width : 300,
-        				height : 300,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 300,
-        				height : 1100,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 200,
-        				height : 300,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 200,
-        				height : 1100,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 1500,
-        				height : 300,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 500,
-        				height : 500,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 750,
-        				height : 700,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 500,
-        				height : 500,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        		
-        	{
-        				width : 750,
-        				height : 700,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 500,
-        				height : 500,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	}
-        	
+            {
+                        width : 300,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 300,
+                        height : 1100,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 200,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 200,
+                        height : 1100,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 1500,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 750,
+                        height : 700,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+                
+            {
+                        width : 750,
+                        height : 700,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            }
+            
         ];
 
         globobjarray = [
-        	{
-        				width : 300,
-        				height : 300,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	
-        	{
-        				width : 200,
-        				height : 300,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 200,
-        				height : 1100,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 300,
-        				height : 1100,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 1500,
-        				height : 300,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 750,
-        				height : 700,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 500,
-        				height : 500,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	
-        	{
-        				width : 750,
-        				height : 700,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 500,
-        				height : 500,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        		
-        	{
-        				width : 750,
-        				height : 700,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	},
-        	{
-        				width : 500,
-        				height : 500,
-        				widthDraw : 0,
-        				heightDraw : 0,
-        				type : 'square'
-        	}
-        	
+            {
+                        width : 300,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            
+            {
+                        width : 200,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 200,
+                        height : 1100,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 300,
+                        height : 1100,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 1500,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 750,
+                        height : 700,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            
+            {
+                        width : 750,
+                        height : 700,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+                
+            {
+                        width : 750,
+                        height : 700,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            }
+            
         ];
         */
 
@@ -986,7 +986,7 @@ $(document).ready(function() {
                         drawsquare(1, startes.i, startes.j, globobjarray[rnd].widthDraw, globobjarray[rnd].heightDraw, getRandomColor());
                     } else {
                         testings++;
-                        //alert('кончился перевый лист');	
+                        //alert('кончился перевый лист');   
                     }
 
                 }
@@ -1136,7 +1136,7 @@ $(document).ready(function() {
 
 
 
-        $("#posit").click(function() {
+    $("#posit").click(function() {
         var heightDrawSQ = 0;
         var widthDrawSQ = 0;
         var startes = [];
@@ -1280,20 +1280,20 @@ $(document).ready(function() {
 
 
         /*
-		if(startes1.i === startes2.i && startes1.j === startes2.j ){
+        if(startes1.i === startes2.i && startes1.j === startes2.j ){
 
-			drawsquare(1,startes1.i,startes1.j,widthDrawGshaped1,heightDrawGshaped1,colormix,1);// горизонтальная отрисовка
-			drawsquare(1,Math.abs(startes1.i+widthDrawGshaped1-widthDrawGshaped2),startes1.j,widthDrawGshaped2,heightDrawGshaped2,colormix,1);
-			// вариант 1 
-		//drawsquare(1,startes1.i,startes1.j,heightDrawGshaped1,widthDrawGshaped1,colormix,1);// горизонтальная отрисовка
-		//drawsquare(1,startes1.i,startes1.j,heightDrawGshaped2,widthDrawGshaped2,colormix,1);
-		}else{
-				//вариант 2
-		//drawsquare(1,startes2.i,startes2.j,heightDrawGshaped1,widthDrawGshaped1,colormix,1); // горизонтальная отрисовка
-		//drawsquare(1,startes2.i,startes2.j,heightDrawGshaped2,widthDrawGshaped2,colormix,1);
-	
-		}
-		*/
+            drawsquare(1,startes1.i,startes1.j,widthDrawGshaped1,heightDrawGshaped1,colormix,1);// горизонтальная отрисовка
+            drawsquare(1,Math.abs(startes1.i+widthDrawGshaped1-widthDrawGshaped2),startes1.j,widthDrawGshaped2,heightDrawGshaped2,colormix,1);
+            // вариант 1 
+        //drawsquare(1,startes1.i,startes1.j,heightDrawGshaped1,widthDrawGshaped1,colormix,1);// горизонтальная отрисовка
+        //drawsquare(1,startes1.i,startes1.j,heightDrawGshaped2,widthDrawGshaped2,colormix,1);
+        }else{
+                //вариант 2
+        //drawsquare(1,startes2.i,startes2.j,heightDrawGshaped1,widthDrawGshaped1,colormix,1); // горизонтальная отрисовка
+        //drawsquare(1,startes2.i,startes2.j,heightDrawGshaped2,widthDrawGshaped2,colormix,1);
+    
+        }
+        */
 
         // вариант 1 
         //drawsquare(1,startes1.i,startes1.j,heightDrawGshaped1,widthDrawGshaped1,colormix,1);// горизонтальная отрисовка
@@ -1307,7 +1307,7 @@ $(document).ready(function() {
         //drawsquare(1,Math.abs(startes1.i+heightDrawGshaped2-heightDrawGshaped1),startes1.j,heightDrawGshaped1,widthDrawGshaped1,colormix,1);// горизонтальная отрисовка
         //drawsquare(1,startes1.i,Math.abs(startes1.j+widthDrawGshaped1-widthDrawGshaped2),heightDrawGshaped2,widthDrawGshaped2,colormix,1);
 
-        //вариант 4	
+        //вариант 4 
         //drawsquare(1,startes1.i,startes1.j,widthDrawGshaped1,heightDrawGshaped1,colormix,1);// горизонтальная отрисовка
         //drawsquare(1,Math.abs(startes1.i+widthDrawGshaped1-widthDrawGshaped2),startes1.j,widthDrawGshaped2,heightDrawGshaped2,colormix,1);
 
@@ -1532,7 +1532,7 @@ $(document).ready(function() {
 
 
         for (var t = 1; t < 2; t++) {
-            //	kva1 += '<div id="kva'+t+'">     </div>';
+            //  kva1 += '<div id="kva'+t+'">     </div>';
             //$("#quear"+t).append(kva1);
             $('#quear' + t).css('width', a);
             $('#quear' + t).css('height', b);
@@ -1577,37 +1577,37 @@ $(document).ready(function() {
     }
 
     let generator = gen(5);
-    $("#GenStart").click(function(){
-    	
- 		let res1 = generator.next(10);
+    $("#GenStart").click(function() {
+
+        let res1 = generator.next(10);
         let res2 = generator.next(20);
         let res3 = generator.next(30);
- 		//console.log('res'+res);
- 		//generator.next().value;
- 		//generator.next().value;
+        //console.log('res'+res);
+        //generator.next().value;
+        //generator.next().value;
     });
 
-    function* gen(atr){
-    		console.log(1);
-    		console.log(2);
-    		console.log(3);
-    		var result1 =  yield (atr * 2);
-    		console.log(result1);
-    		console.log(4);
-    		console.log(5);
-    		console.log(6);
-    		var result2 = yield (atr * 3);
-    		console.log(result2);
-    		console.log(7);
-    		console.log(8);
-    		console.log(9);
-    		console.log(result1,result2);
+    function* gen(atr) {
+        console.log(1);
+        console.log(2);
+        console.log(3);
+        var result1 = yield(atr * 2);
+        console.log(result1);
+        console.log(4);
+        console.log(5);
+        console.log(6);
+        var result2 = yield(atr * 3);
+        console.log(result2);
+        console.log(7);
+        console.log(8);
+        console.log(9);
+        console.log(result1, result2);
 
-    }		
-
-
+    }
 
 
+
+    
 
 
 
