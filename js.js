@@ -1,10 +1,13 @@
 $(document).ready(function() {
     console.log("document loaded");
     let globmass = [];
-
-    /* settings  */
     let heightplant = 1400;
     let widthplant = 3000;
+    var superResult = [];
+    let globobjarray = [];
+
+
+
     document.getElementById('heightplant').value = heightplant;
     document.getElementById('widthplant').value = widthplant;
     document.getElementById('gw1').value = 1000;
@@ -13,8 +16,6 @@ $(document).ready(function() {
     document.getElementById('gh2').value = 500;
 
     globmass = drowstol(heightplant, widthplant);
-    console.log(globmass);
-    let globobjarray = [];
 
     function preproperty(numer) {
         let countsqw = numer % 50;
@@ -27,28 +28,19 @@ $(document).ready(function() {
     }
 
     function drawsquare(stol, startheight, startwidth, heightDraw, widthDraw, color, t) {
-        console.log(`startheight=${startheight}`);
-        console.log(`startwidth=${startwidth}`);
-        console.log(`heightDraw=${heightDraw}`);
-        console.log(`widthDraw=${widthDraw}`);
-
         let n = heightDraw + startheight;
         let m = widthDraw + startwidth;
-        //let mas = [];
         for (let i = 0 + startheight; i < n; i++) {
-            //mas[i] = [];
             for (let j = 0 + startwidth; j < m; j++) {
                 globmass.mas[i][j] = 1;
                 $('#' + stol + 'w' + i + 'h' + j).css('border', '1px solid ' + color);
                 $('#' + stol + 'w' + i + 'h' + j).css('background-color', color);
                 //$('#'+stol+'w'+i+'h'+j).append(t);
-
             }
         }
     }
 
-    function startdrawsquare(heightDraw, widthDraw) {
-
+    function startDrawSquare(heightDraw, widthDraw) {
         let k = 0;
         let j = 0;
         let i = 0;
@@ -60,18 +52,11 @@ $(document).ready(function() {
         let rdy = true;
         let n = globmass.n,
             m = globmass.m;
-        let peremen = [];
 
-        console.log('n=' + n + ' m=' + m)
-        console.log('heightDraw=' + heightDraw + ' widthDraw' + widthDraw);
-
-
-        for (i = 0; i < m; ++i) {
+        for (i = 0; i < m; i++) {
             if (globmass.mas[i][j] == 0) {
                 if (i + heightDraw < m) {
                     for (let s = i; s < i + heightDraw; s++) {
-                        console.log(`s=${s}`);
-                        console.log(`i + heightDraw=${i + heightDraw}`);
                         if (globmass.mas[s][j] == 0) {
                             k++;
                         }
@@ -80,33 +65,38 @@ $(document).ready(function() {
                         }
                     }
                     if (k === heightDraw) {
-                        console.log(`k = ${k}`);
-
                         break;
                     }
-                    //console.log(`i+h = ${i+heightDraw}`);
                 }
                 if (i + heightDraw == m) {
-                    console.log('equally height');
+                    for (let s = 0; s < heightDraw; s++) {
+                        if (globmass.mas[i + s][j] == 0) {
+                            k++;
+                        }
+                    }
+                    saveI = m - 1;
+                    break;
                 }
+            }
 
-            }
             if (i == m - 1) {
-                console.log(`STOpi${i}`);
-                i = -1;
-                j++;
+                if (j < n) {
+                    i = -1;
+                    j++;
+                }
             }
+
         }
 
-        console.log(`i=${i}`);
-        console.log(`j=${j}`);
+        if (i == m && j == n) {
+            rdy = false;
+            return { i, j, rdy };
+        }
 
-        for (j = 0; j < n; ++j) {
+        for (j = 0; j < n; j++) {
             if (globmass.mas[i][j] == 0) {
                 if (j + widthDraw < n) {
                     for (let q = j; q < j + widthDraw; q++) {
-                        console.log(`q=${q}`);
-                        console.log(`j + widthDraw=${j + widthDraw}`);
                         if (globmass.mas[i][q] == 0) {
                             t++;
                         }
@@ -115,26 +105,29 @@ $(document).ready(function() {
                         }
                     }
                     if (t === widthDraw) {
-                        console.log(`t = ${t}`);
                         break;
                     }
-
-                    //console.log(`i+h = ${i+heightDraw}`);
                 }
+
                 if (j + widthDraw == n) {
-                    console.log('equally width');
+                    for (let q = 0; q < widthDraw; q++) {
+                        if (globmass.mas[i][j + q] == 0) {
+                            t++;
+                        }
+                    }
+                    saveJ = n - 1;
+                    break;
                 }
 
             }
             if (j == n - 1) {
-                console.log(`STOpj${j}`);
-                j = -1;
-                i++;
+                if (i < m - 1) {
+                    j = -1;
+                    i++;
+                }
+
             }
         }
-
-        console.log(`saveI=[${i}..${saveI}]`);
-        console.log(`saveJ=[${j}..${saveJ}]`);
 
         for (let ii = saveI; ii >= i; ii--) {
             for (let jj = saveJ; jj >= j; jj--) {
@@ -143,112 +136,11 @@ $(document).ready(function() {
                 }
             }
         }
-        console.log(`countSquareMax = ${countSquareMax}  countSquareCurr=${countSquareCurr}`)
         if (countSquareMax === countSquareCurr) {
             rdy = true;
         } else {
             rdy = false;
         }
-
-        /*
-        if (globmass.mas[i][j] == 0) {
-            if (i + heightDraw <= m ) {
-                for (let s = i; s < i + heightDraw; s++) {
-                    if (globmass.mas[s][j] == 0) {
-                        k++;
-                    }
-                }
-            } else {
-                console.log('перескочили');
-                i = m - 1;
-            }
-            console.log('k=' + k);
-
-            if (k > heightDraw) {
-                //console.log('k='+k);
-                for (let q = j; q < j + widthDraw; q++) {
-                    if (globmass.mas[i][q] == 0) {
-                        t++;
-                    } else {
-                        console.log('Перескок');
-                        break;
-                    }
-
-                }
-                console.log('t' + t);
-                if (k == heightDraw && t < widthDraw) {
-                    j++;
-                    t = 0;
-                    i = 0;
-                    k = 0;
-                }
-                console.log('t' + t);
-
-                if (k == heightDraw && t == widthDraw) {
-                    break;
-                }
-
-
-            }
-            if (k == heightDraw) {
-
-                console.log('исключение i' + i);
-
-                for (let q = j; q < j + widthDraw; q++) {
-                    if (globmass.mas[i][q] == 0) {
-                        t++;
-                    } else {
-                        console.log('Перескок');
-                        break;
-                    }
-
-                }
-                //console.log('t'+t);   
-                if (k == heightDraw && t < widthDraw) {
-                    j++;
-                    t = 0;
-                    i = 0;
-                    k = 0;
-                }
-                if (k == heightDraw && t == widthDraw) {
-                    break;
-                }
-            }
-            if (k < heightDraw) {
-                if (j < n) {
-                    console.log('Закончилось');
-                    j++;
-                    k = 0;
-                    i = -1;
-                }
-            }
-
-        }
-        if (i == m) {
-            console.log('как такэ');
-            console.log('wd' + widthDraw + ' j' + j + ' n' + n);
-            console.log('wh' + heightDraw + ' i' + i + ' m' + m);
-            j++;
-            k = 0;
-            i = -1;
-            //break;
-        }
-        if (widthDraw + j <= n) {
-
-        } else {
-            rdy = false;
-            //
-            break;
-        }
-
-        if (j == n) {
-            rdy = false;
-            //
-            break;
-        }
-        */
-
-
 
         console.log(`i=${i} j=${j} rdy=${rdy}`);
         return { i, j, rdy };
@@ -436,7 +328,7 @@ $(document).ready(function() {
 
     }
 
-    function startdrawsquarev2(heightDraw, widthDraw) {
+    function startDrawSquarev2(heightDraw, widthDraw) {
 
         let k = 0;
         let j = 0;
@@ -571,13 +463,13 @@ $(document).ready(function() {
         }
         globobjarray.push(squareobj);
 
-        startes = startdrawsquare(heightDrawSQ, widthDrawSQ);
+        startes = startDrawSquare(heightDrawSQ, widthDrawSQ);
         console.log(startes);
 
         if (startes.rdy === true) {
             drawsquare(1, startes.i, startes.j, heightDrawSQ, widthDrawSQ, getRandomColor(), 1);
         } else {
-            startes = startdrawsquare(widthDrawSQ, heightDrawSQ); // rotate func
+            startes = startDrawSquare(widthDrawSQ, heightDrawSQ); // rotate func
             if (startes.rdy === true) {
                 drawsquare(1, startes.i, startes.j, widthDrawSQ, heightDrawSQ, getRandomColor(), 1);
             } else {
@@ -595,7 +487,7 @@ $(document).ready(function() {
         if (globobjarray.length !== 0 && globobjarray.length !== undefined) {
             for (i = 0; i < globobjarray.length; i++) {
 
-                startes = startdrawsquare(globobjarray[i].heightDraw, globobjarray[i].widthDraw, i);
+                startes = startDrawSquare(globobjarray[i].heightDraw, globobjarray[i].widthDraw, i);
 
                 //console.log(startes);
                 //console.log('h'+heightDrawSQ);
@@ -603,7 +495,7 @@ $(document).ready(function() {
                 if (startes.rdy === true) {
                     drawsquare(1, startes.i, startes.j, globobjarray[i].heightDraw, globobjarray[i].widthDraw, getRandomColor());
                 } else {
-                    startes = startdrawsquare(globobjarray[i].widthDraw, globobjarray[i].heightDraw); // rotate func
+                    startes = startDrawSquare(globobjarray[i].widthDraw, globobjarray[i].heightDraw); // rotate func
                     if (startes.rdy === true) {
                         drawsquare(1, startes.i, startes.j, globobjarray[i].widthDraw, globobjarray[i].heightDraw, getRandomColor());
                     } else {
@@ -864,7 +756,7 @@ $(document).ready(function() {
                 console.log('rnd' + rnd);
                 globobjarray[rnd].heightDraw = preproperty(globobjarray[rnd].height);
                 globobjarray[rnd].widthDraw = preproperty(globobjarray[rnd].width);
-                startes = startdrawsquare(globobjarray[rnd].heightDraw, globobjarray[rnd].widthDraw);
+                startes = startDrawSquare(globobjarray[rnd].heightDraw, globobjarray[rnd].widthDraw);
 
                 //console.log(startes);
                 //console.log('h'+heightDrawSQ);
@@ -872,7 +764,7 @@ $(document).ready(function() {
                 if (startes.rdy === true) {
                     drawsquare(1, startes.i, startes.j, globobjarray[rnd].heightDraw, globobjarray[rnd].widthDraw, getRandomColor());
                 } else {
-                    startes = startdrawsquare(globobjarray[rnd].widthDraw, globobjarray[rnd].heightDraw); // rotate func
+                    startes = startDrawSquare(globobjarray[rnd].widthDraw, globobjarray[rnd].heightDraw); // rotate func
                     if (startes.rdy === true) {
                         drawsquare(1, startes.i, startes.j, globobjarray[rnd].widthDraw, globobjarray[rnd].heightDraw, getRandomColor());
                     } else {
@@ -893,6 +785,11 @@ $(document).ready(function() {
     });
 
 
+    document.getElementById('Ostatki').addEventListener("click", function() {
+        ostatki();
+    });
+
+
 
     function ostatki() {
         let ostao = [];
@@ -901,17 +798,15 @@ $(document).ready(function() {
 
         for (let i = 0; i < n; i++) {
             for (let j = 0; j < m; j++) {
-
                 if (globmass.mas[j][i] == 0) {
-
                     ostao.push({ a: i, b: j, c: 0 });
                 }
             }
 
         }
-
         let k = 0;
         let now = 1;
+        console.log(ostao);
         console.log('dlin' + ostao.length);
         for (let i = 0; i < ostao.length - 1; i++) {
             if (ostao[i].b + 1 == ostao[i + 1].b && ostao[i].a == ostao[i + 1].a) {
@@ -926,27 +821,40 @@ $(document).ready(function() {
                 $('#1w' + ostao[i].b + 'h' + ostao[i].a).append(now);
                 k = 0;
             } else {
-                if (ostao[i].a == ostao[i + 1].a) {
-
-
-                } else {
+                if (ostao[i].a == ostao[i + 1].a) {} else {
                     //console.log('i'+i+ '' + 'k '+k );
                     ostao[i].c = now;
                     $('#1w' + ostao[i].b + 'h' + ostao[i].a).append(now);
                     now++;
                     k = 0;
                 }
-
             }
-
             if (i + 1 == ostao.length - 1) {
                 ostao[i + 1].c = now;
                 $('#1w' + ostao[i + 1].b + 'h' + ostao[i + 1].a).append(now);
-
-
             }
         }
+
+        sumSquare(ostao);
+
     }
+
+    function sumSquare(ostao) {
+        var massss = [];
+        for (let i = 0; i < ostao.length; i++) {
+            console.log(ostao[i].c);
+            massss.push(ostao[i].c);
+        }
+
+        let result = massss.reduce(function(acc, el) {
+            acc[el] = (acc[el] || 0) + 1;
+            return acc;
+        }, {});
+        superResult.push(result);
+        console.log(result);
+
+    }
+
 
 
     function getRandomInt(min, max) {
@@ -975,7 +883,7 @@ $(document).ready(function() {
         qh = document.getElementById('qh').value;
         heightDrawSQ = preproperty(qh);
         widthDrawSQ = preproperty(qw);
-        startes = startdrawsquare(heightDrawSQ, widthDrawSQ);
+        startes = startDrawSquare(heightDrawSQ, widthDrawSQ);
         console.log(startes);
     });
 
@@ -1050,8 +958,8 @@ $(document).ready(function() {
                     drawsquare(1, startes1.i, startes1.j, widthDrawGshaped2, heightDrawGshaped2, colormix, 1);
                     drawsquare(1, startes1.i2, startes1.j2, widthDrawGshaped1, heightDrawGshaped1, colormix, 1);
                     /*
-                    startes1 = startdrawsquare(heightDrawGshaped1, widthDrawGshaped1);
-                    startes2 = startdrawsquare(heightDrawGshaped2, widthDrawGshaped2);
+                    startes1 = startDrawSquare(heightDrawGshaped1, widthDrawGshaped1);
+                    startes2 = startDrawSquare(heightDrawGshaped2, widthDrawGshaped2);
                     drawsquare(1,Math.abs(startes1.i+heightDrawGshaped2-heightDrawGshaped1),startes1.j,heightDrawGshaped1,widthDrawGshaped1,colormix,1);// горизонтальная отрисовка
                     drawsquare(1,startes1.i,Math.abs(startes1.j+widthDrawGshaped1-widthDrawGshaped2),heightDrawGshaped2,widthDrawGshaped2,colormix,1);
                     */
@@ -1059,8 +967,8 @@ $(document).ready(function() {
                 }
             case 3:
                 {
-                    startes1 = startdrawsquare(heightDrawGshaped1, widthDrawGshaped1);
-                    startes2 = startdrawsquare(heightDrawGshaped2, widthDrawGshaped2);
+                    startes1 = startDrawSquare(heightDrawGshaped1, widthDrawGshaped1);
+                    startes2 = startDrawSquare(heightDrawGshaped2, widthDrawGshaped2);
                     drawsquare(1, startes1.i, startes1.j, widthDrawGshaped1, heightDrawGshaped1, colormix, 1); // горизонтальная отрисовка
                     drawsquare(1, Math.abs(startes1.i + widthDrawGshaped1 - widthDrawGshaped2), startes1.j, widthDrawGshaped2, heightDrawGshaped2, colormix, 1);
 
@@ -1236,25 +1144,6 @@ $(document).ready(function() {
         }
     });
 
-    document.getElementById('ondrow').addEventListener("click", function() {
-
-        let n = globmass.n,
-            m = globmass.m;
-
-        let t = 1;
-        for (let i = 0; i < m; i++) {
-
-            for (let j = 0; j < n; j++) {
-                globmass.mas[i][j] = 0;
-                $('#' + t + 'w' + i + 'h' + j).css('border', '1px solid green');
-
-                $('#' + t + 'w' + i + 'h' + j).empty();
-
-            }
-        }
-
-    });
-
     function drowstol(hh, ww) {
 
         let n = 40,
@@ -1290,17 +1179,15 @@ $(document).ready(function() {
                     //$('#w'+i+j).css('position', 'relative');
                     $('#' + t + 'w' + i + 'h' + j).css('display', 'block');
                     $('#' + t + 'w' + i + 'h' + j).css('float', 'left');
-
+                    $('#' + t + 'w' + i + 'h' + j).css('float', 'left');
+                    $('#' + t + 'w' + i + 'h' + j).css('background', '#ffffff');
+                    $('#' + t + 'w' + i + 'h' + j).empty();
                 }
             }
         }
         console.log(`${mas} n=${n} m=${m}`);
         return { mas, n, m };
     }
-
-
-
-
 
     function getRandomColor() {
         let letters = '0123456789ABCDEF';
@@ -1311,33 +1198,31 @@ $(document).ready(function() {
         return color;
     }
 
-    let generator = gen(5);
-    $("#GenStart").click(function() {
 
-        let res1 = generator.next(10);
-        let res2 = generator.next(20);
-        let res3 = generator.next(30);
-        //console.log('res'+res);
-        //generator.next().value;
-        //generator.next().value;
+    document.getElementById('FullClear').addEventListener('click', () => {
+        clearStol();
+
     });
 
-    function* gen(atr) {
-        console.log(1);
-        console.log(2);
-        console.log(3);
-        let result1 = yield(atr * 2);
-        console.log(result1);
-        console.log(4);
-        console.log(5);
-        console.log(6);
-        let result2 = yield(atr * 3);
-        console.log(result2);
-        console.log(7);
-        console.log(8);
-        console.log(9);
-        console.log(result1, result2);
+    document.getElementById('FullTest').addEventListener('click', () => {
+        fullTest();
+
+    });
+
+
+
+
+    function clearStol() {
+        globmass = drowstol(heightplant, widthplant);
+        globobjarray = [];
 
     }
+
+    function fullTest() {
+
+    }
+
+
+
 
 });
