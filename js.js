@@ -4,7 +4,236 @@ $(document).ready(function() {
     let heightplant = 1400;
     let widthplant = 3000;
     var superResult = [];
+    var testCaseResult = [];
     let globobjarray = [];
+    let qw = 0;
+    let qh = 0;
+    let pdetalwidt1 = 0;
+    let pdetalheig1 = 0;
+    let pdetalwidt2 = 0;
+    let pdetalheig2 = 0;
+    let pdetalwidt3 = 0;
+    let pdetalheig3 = 0;
+
+    /*
+        globobjarray = [
+            {
+                        width : 300,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 300,
+                        height : 1100,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 200,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 200,
+                        height : 1100,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 1500,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 750,
+                        height : 700,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+                
+            {
+                        width : 750,
+                        height : 700,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            }
+            
+        ];
+
+        globobjarray = [
+            {
+                        width : 300,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            
+            {
+                        width : 200,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 200,
+                        height : 1100,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 300,
+                        height : 1100,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 1500,
+                        height : 300,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 750,
+                        height : 700,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            
+            {
+                        width : 750,
+                        height : 700,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+                
+            {
+                        width : 750,
+                        height : 700,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            },
+            {
+                        width : 500,
+                        height : 500,
+                        widthDraw : 0,
+                        heightDraw : 0,
+                        type : 'square'
+            }
+            
+        ];
+        */
+
+    globobjarray = [{
+            id: 1,
+            width: 500,
+            height: 450,
+            widthDraw: 0,
+            heightDraw: 0,
+            type: 'square',
+            revert: false
+        },
+        {
+            id: 2,
+            width: 2000,
+            height: 750,
+            widthDraw: 0,
+            heightDraw: 0,
+            type: 'square',
+            revert: false
+        },
+        {
+            id: 3,
+            width: 500,
+            height: 300,
+            widthDraw: 0,
+            heightDraw: 0,
+            type: 'square',
+            revert: false
+        },
+        {
+            id: 4,
+            width: 500,
+            height: 750,
+            widthDraw: 0,
+            heightDraw: 0,
+            type: 'square',
+            revert: false
+        },
+
+        {
+            id: 5,
+            width: 1000,
+            height: 250,
+            widthDraw: 0,
+            heightDraw: 0,
+            type: 'square',
+            revert: false
+        },
+        {
+            id: 6,
+            width: 1000,
+            height: 500,
+            widthDraw: 0,
+            heightDraw: 0,
+            type: 'square',
+            revert: false
+        },
+
+
+    ];
 
 
 
@@ -36,6 +265,16 @@ $(document).ready(function() {
                 $('#' + stol + 'w' + i + 'h' + j).css('border', '1px solid ' + color);
                 $('#' + stol + 'w' + i + 'h' + j).css('background-color', color);
                 //$('#'+stol+'w'+i+'h'+j).append(t);
+            }
+        }
+    }
+
+    function drawsquareNotVisible(stol, startheight, startwidth, heightDraw, widthDraw, color, t) {
+        let n = heightDraw + startheight;
+        let m = widthDraw + startwidth;
+        for (let i = 0 + startheight; i < n; i++) {
+            for (let j = 0 + startwidth; j < m; j++) {
+                globmass.mas[i][j] = 1;
             }
         }
     }
@@ -141,8 +380,6 @@ $(document).ready(function() {
         } else {
             rdy = false;
         }
-
-        console.log(`i=${i} j=${j} rdy=${rdy}`);
         return { i, j, rdy };
     }
 
@@ -439,10 +676,7 @@ $(document).ready(function() {
     }
 
 
-    let qw = 0;
-    let qh = 0;
-    let detalwidt = 0;
-    let detalheig = 0;
+
 
     $("#drawq").click(function() {
 
@@ -513,275 +747,7 @@ $(document).ready(function() {
 
 
     document.getElementById('Test').addEventListener("click", function() {
-        /*
-        globobjarray = [
-            {
-                        width : 300,
-                        height : 300,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 300,
-                        height : 1100,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 200,
-                        height : 300,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 200,
-                        height : 1100,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 1500,
-                        height : 300,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 500,
-                        height : 500,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 750,
-                        height : 700,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 500,
-                        height : 500,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-                
-            {
-                        width : 750,
-                        height : 700,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 500,
-                        height : 500,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            }
-            
-        ];
-
-        globobjarray = [
-            {
-                        width : 300,
-                        height : 300,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            
-            {
-                        width : 200,
-                        height : 300,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 200,
-                        height : 1100,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 300,
-                        height : 1100,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 1500,
-                        height : 300,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 750,
-                        height : 700,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 500,
-                        height : 500,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            
-            {
-                        width : 750,
-                        height : 700,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 500,
-                        height : 500,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-                
-            {
-                        width : 750,
-                        height : 700,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            },
-            {
-                        width : 500,
-                        height : 500,
-                        widthDraw : 0,
-                        heightDraw : 0,
-                        type : 'square'
-            }
-            
-        ];
-        */
-
-        globobjarray = [{
-                width: 500,
-                height: 450,
-                widthDraw: 0,
-                heightDraw: 0,
-                type: 'square'
-            },
-            {
-                width: 2000,
-                height: 750,
-                widthDraw: 0,
-                heightDraw: 0,
-                type: 'square'
-            },
-            {
-                width: 500,
-                height: 300,
-                widthDraw: 0,
-                heightDraw: 0,
-                type: 'square'
-            },
-            {
-                width: 500,
-                height: 750,
-                widthDraw: 0,
-                heightDraw: 0,
-                type: 'square'
-            },
-
-            {
-                width: 1000,
-                height: 250,
-                widthDraw: 0,
-                heightDraw: 0,
-                type: 'square'
-            },
-            {
-                width: 1000,
-                height: 500,
-                widthDraw: 0,
-                heightDraw: 0,
-                type: 'square'
-            },
-
-
-        ];
-
-        let i = 0;
-        let testings = 0;
-        let startes = [];
-
-        /*
-        globobjarray.sort(function (a, b) {
-          if (a.width < b.width) {
-            return 1;
-          }
-          if (a.width > b.width) {
-            return -1;
-          }
-          // a должно быть равным b
-          return 0;
-        });
-        */
-
-        console.log(globobjarray);
-        let rnd = 0;
-
-        if (globobjarray.length !== 0 && globobjarray.length !== undefined) {
-
-            while (i <= 3000) {
-                if (globobjarray.length == 0) {
-                    i = 3000;
-                    break;
-                    rnd = 0;
-                } else {
-                    i++;
-                    rnd = getRandomInt(0, globobjarray.length - 1);
-                }
-
-                console.log('rnd' + rnd);
-                globobjarray[rnd].heightDraw = preproperty(globobjarray[rnd].height);
-                globobjarray[rnd].widthDraw = preproperty(globobjarray[rnd].width);
-                startes = startDrawSquare(globobjarray[rnd].heightDraw, globobjarray[rnd].widthDraw);
-
-                //console.log(startes);
-                //console.log('h'+heightDrawSQ);
-                //console.log('w'+widthDrawSQ);
-                if (startes.rdy === true) {
-                    drawsquare(1, startes.i, startes.j, globobjarray[rnd].heightDraw, globobjarray[rnd].widthDraw, getRandomColor());
-                } else {
-                    startes = startDrawSquare(globobjarray[rnd].widthDraw, globobjarray[rnd].heightDraw); // rotate func
-                    if (startes.rdy === true) {
-                        drawsquare(1, startes.i, startes.j, globobjarray[rnd].widthDraw, globobjarray[rnd].heightDraw, getRandomColor());
-                    } else {
-                        testings++;
-                        //alert('кончился перевый лист');   
-                    }
-
-                }
-                globobjarray.splice(rnd, 1);
-                console.log(globobjarray);
-            }
-
-        } else {
-            alert('Добавте объекты');
-        }
-        console.log('res=' + testings);
-        ostatki();
+        test();
     });
 
 
@@ -790,6 +756,58 @@ $(document).ready(function() {
     });
 
 
+    function test() {
+        let startes = [];
+        let testings = 0;
+        let combinationNumber = [];
+        console.log(globobjarray);
+
+        for (let j = 0; j < globobjarray.length; j++) {
+            combinationNumber.push(globobjarray[j].id);
+        }
+
+        let fullTestRun = combinations(combinationNumber);
+
+        if (globobjarray.length !== 0 && globobjarray.length !== undefined) {
+            for (let i = 0; i < fullTestRun.length; i++) {
+
+                var testCase = [];
+                for (let j = 0; j < fullTestRun[i].length; j++) {
+                    let obj = globobjarray.find((element, index) => {
+                        if (element.id === fullTestRun[i][j]) {
+                            return element;
+                        }
+                    });
+
+                    obj.heightDraw = preproperty(obj.height);
+                    obj.widthDraw = preproperty(obj.width);
+                    startes = startDrawSquare(obj.heightDraw, obj.widthDraw);
+                    if (startes.rdy === true) {
+                        drawsquareNotVisible(1, startes.i, startes.j, obj.heightDraw, obj.widthDraw, getRandomColor());
+                        obj.revert = false;
+                    } else {
+                        startes = startDrawSquare(obj.widthDraw, obj.heightDraw); // rotate func
+                        if (startes.rdy === true) {
+                            drawsquareNotVisible(1, startes.i, startes.j, obj.widthDraw, obj.heightDraw, getRandomColor());
+                            obj.revert = true;
+                        } else {
+                            testings++;
+                            //alert('кончился перевый лист');   
+                        }
+                    }
+                    testCase.push({
+                        id: obj.id,
+                        revert: obj.revert,
+                    });
+
+                }
+                testCaseResult.push({ testCase: testCase, ostatki: ostatkiNotVisible() });
+                clearStol();
+            }
+        } else {
+            alert('Добавте объекты');
+        }
+    }
 
     function ostatki() {
         let ostao = [];
@@ -806,23 +824,18 @@ $(document).ready(function() {
         }
         let k = 0;
         let now = 1;
-        console.log(ostao);
-        console.log('dlin' + ostao.length);
         for (let i = 0; i < ostao.length - 1; i++) {
             if (ostao[i].b + 1 == ostao[i + 1].b && ostao[i].a == ostao[i + 1].a) {
 
                 ostao[i].c = now;
                 $('#1w' + ostao[i].b + 'h' + ostao[i].a).append(now);
                 k++;
-                //console.log('k'+k);
             } else if (ostao[i + 1].b == ostao[i - k].b) {
                 ostao[i].c = now;
-                //globmass[ostao[i].b][ostao[i].a]=1;
                 $('#1w' + ostao[i].b + 'h' + ostao[i].a).append(now);
                 k = 0;
             } else {
                 if (ostao[i].a == ostao[i + 1].a) {} else {
-                    //console.log('i'+i+ '' + 'k '+k );
                     ostao[i].c = now;
                     $('#1w' + ostao[i].b + 'h' + ostao[i].a).append(now);
                     now++;
@@ -835,14 +848,51 @@ $(document).ready(function() {
             }
         }
 
-        sumSquare(ostao);
+        return sumSquare(ostao);
+    }
 
+
+    function ostatkiNotVisible() {
+        let ostao = [];
+        let n = globmass.n,
+            m = globmass.m;
+
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < m; j++) {
+                if (globmass.mas[j][i] == 0) {
+                    ostao.push({ a: i, b: j, c: 0 });
+                }
+            }
+
+        }
+        let k = 0;
+        let now = 1;
+        for (let i = 0; i < ostao.length - 1; i++) {
+            if (ostao[i].b + 1 == ostao[i + 1].b && ostao[i].a == ostao[i + 1].a) {
+
+                ostao[i].c = now;
+                k++;
+            } else if (ostao[i + 1].b == ostao[i - k].b) {
+                ostao[i].c = now;
+                k = 0;
+            } else {
+                if (ostao[i].a == ostao[i + 1].a) {} else {
+                    ostao[i].c = now;
+                    now++;
+                    k = 0;
+                }
+            }
+            if (i + 1 == ostao.length - 1) {
+                ostao[i + 1].c = now;
+            }
+        }
+
+        return sumSquare(ostao);
     }
 
     function sumSquare(ostao) {
         var massss = [];
         for (let i = 0; i < ostao.length; i++) {
-            console.log(ostao[i].c);
             massss.push(ostao[i].c);
         }
 
@@ -850,9 +900,9 @@ $(document).ready(function() {
             acc[el] = (acc[el] || 0) + 1;
             return acc;
         }, {});
-        superResult.push(result);
-        console.log(result);
 
+        superResult.push(result);
+        return result;
     }
 
 
@@ -865,6 +915,9 @@ $(document).ready(function() {
     document.getElementById('Conslog').addEventListener("click", function() {
         console.log(globobjarray);
         console.log(globmass);
+        console.log(superResult);
+        console.log(testCaseResult);
+
 
         let i = 0;
         let startes = [];
@@ -875,7 +928,81 @@ $(document).ready(function() {
         }
     });
 
-    $("#posit").click(function() {
+    function make(arr, el) {
+        var i, i_m, item;
+        var len = arr.length;
+        var res = [];
+
+        for (i = len; i >= 0; i--) {
+            res.push(
+                ([]).concat(
+                    arr.slice(0, i), [el],
+                    arr.slice(i, i_m)
+                )
+            );
+        }
+
+        return res;
+    }
+
+    function combinations(arr) {
+        var prev, curr, el, i;
+        var len = arr.length;
+
+        curr = [
+            [arr[0]]
+        ];
+
+        for (i = 1; i < len; i++) {
+            el = arr[i];
+            prev = curr;
+            curr = [];
+
+            prev.forEach(function(item) {
+                curr = curr.concat(
+                    make(item, el)
+                );
+            });
+        }
+
+        return curr;
+    }
+
+
+    document.getElementById('testCaseResult').addEventListener("click", () => {
+        for (let i = 0; i < testCaseResult.length; i++) {
+            testCaseResult[i].lengthOs = Object.keys(testCaseResult[i].ostatki).length;
+            testCaseResult[i].sums = Object.values(testCaseResult[i].ostatki).reduce((a, b) => a + b, 0);
+        }
+
+
+
+
+        testCaseResult.sort((a, b) => {
+            if (a.lengthOs > b.lengthOs) {
+                return 1;
+            } else {
+                return -1;
+            }
+            return 0;
+        });
+
+        console.log(testCaseResult);
+    });
+
+    document.getElementById('SearchTestResult').addEventListener('click', () => {
+        let val = document.getElementById('numberCase').value;
+        console.log(val);
+        if (val <= testCaseResult.length) {
+            console.log(testCaseResult[val]);
+        }
+
+    });
+
+
+
+
+    $("#posit").click(() => {
         let heightDrawSQ = 0;
         let widthDrawSQ = 0;
         let startes = [];
@@ -884,20 +1011,9 @@ $(document).ready(function() {
         heightDrawSQ = preproperty(qh);
         widthDrawSQ = preproperty(qw);
         startes = startDrawSquare(heightDrawSQ, widthDrawSQ);
-        console.log(startes);
     });
 
-    let pdetalwidt1 = 0;
-    let pdetalheig1 = 0;
-    let pdetalwidt2 = 0;
-    let pdetalheig2 = 0;
-    let pdetalwidt3 = 0;
-    let pdetalheig3 = 0;
 
-    //let posit = 0;
-    let print = 0;
-    let ostatokwidth = 0;
-    let ostatokheight = 0;
 
     document.getElementById('drawG').addEventListener("click", function() {
 
@@ -1189,6 +1305,33 @@ $(document).ready(function() {
         return { mas, n, m };
     }
 
+    function drowstolNotVisible(hh, ww) {
+
+        let n = 40,
+            m = 30;
+        m = Math.ceil(hh / 50);
+        n = Math.ceil(ww / 50);
+
+        let a = n * 22;
+        let b = m * 22;
+        let a1 = 20;
+        let b1 = 20;
+        let kva1 = "";
+        let kva2 = "";
+
+
+        for (let t = 1; t < 2; t++) {
+            var mas = [];
+            for (let i = 0; i < m; i++) {
+                mas[i] = [];
+                for (let j = 0; j < n; j++) {
+                    mas[i][j] = 0;
+                }
+            }
+        }
+        return { mas, n, m };
+    }
+
     function getRandomColor() {
         let letters = '0123456789ABCDEF';
         let color = '#';
@@ -1206,23 +1349,23 @@ $(document).ready(function() {
 
     document.getElementById('FullTest').addEventListener('click', () => {
         fullTest();
-
     });
 
 
 
 
     function clearStol() {
-        globmass = drowstol(heightplant, widthplant);
-        globobjarray = [];
-
+        //$('#quear1').empty();
+        globmass = drowstolNotVisible(heightplant, widthplant);
+        //globobjarray = [];
     }
 
     function fullTest() {
-
+        let dateA = new Date();
+        test();
+        let dateB = new Date();
+        console.log((dateB.getTime() - dateA.getTime()) / 1000);
     }
-
-
 
 
 });
