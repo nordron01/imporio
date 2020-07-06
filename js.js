@@ -231,11 +231,7 @@ $(document).ready(function() {
             type: 'square',
             revert: false
         },
-
-
     ];
-
-
 
     document.getElementById('heightplant').value = heightplant;
     document.getElementById('widthplant').value = widthplant;
@@ -758,7 +754,7 @@ $(document).ready(function() {
 
     function test() {
         let startes = [];
-        let testings = 0;
+
         let combinationNumber = [];
         console.log(globobjarray);
 
@@ -770,9 +766,10 @@ $(document).ready(function() {
 
         if (globobjarray.length !== 0 && globobjarray.length !== undefined) {
             for (let i = 0; i < fullTestRun.length; i++) {
-
+                let fail = false;
                 var testCase = [];
                 for (let j = 0; j < fullTestRun[i].length; j++) {
+
                     let obj = globobjarray.find((element, index) => {
                         if (element.id === fullTestRun[i][j]) {
                             return element;
@@ -791,7 +788,7 @@ $(document).ready(function() {
                             drawsquareNotVisible(1, startes.i, startes.j, obj.widthDraw, obj.heightDraw, getRandomColor());
                             obj.revert = true;
                         } else {
-                            testings++;
+                            fail = true;
                             //alert('кончился перевый лист');   
                         }
                     }
@@ -799,9 +796,11 @@ $(document).ready(function() {
                         id: obj.id,
                         revert: obj.revert,
                     });
-
                 }
-                testCaseResult.push({ testCase: testCase, ostatki: ostatkiNotVisible() });
+
+                if (!fail) {
+                    testCaseResult.push({ testCase: testCase, ostatki: ostatkiNotVisible() });
+                }
                 clearStol();
             }
         } else {
@@ -975,9 +974,6 @@ $(document).ready(function() {
             testCaseResult[i].sums = Object.values(testCaseResult[i].ostatki).reduce((a, b) => a + b, 0);
         }
 
-
-
-
         testCaseResult.sort((a, b) => {
             if (a.lengthOs > b.lengthOs) {
                 return 1;
@@ -987,15 +983,42 @@ $(document).ready(function() {
             return 0;
         });
 
+        testCaseResult.sort((a, b) => {
+            if (a.sums < b.sums) {
+                return 1;
+            } else {
+                return -1;
+            }
+            return 0;
+        });
         console.log(testCaseResult);
     });
 
     document.getElementById('SearchTestResult').addEventListener('click', () => {
+        console.log(globmass);
         let val = document.getElementById('numberCase').value;
         console.log(val);
         if (val <= testCaseResult.length) {
             console.log(testCaseResult[val]);
         }
+
+        testCaseResult[val].testCase.forEach(item => {
+            let currObj = globobjarray.find(itm => itm.id === item.id);
+            console.log(currObj);
+
+            startes = startDrawSquare(currObj.heightDraw, currObj.widthDraw);
+
+            if (startes.rdy === true) {
+                drawsquare(1, startes.i, startes.j, currObj.heightDraw, currObj.widthDraw, getRandomColor(), 1);
+            } else {
+                startes = startDrawSquare(currObj.widthDraw, currObj.heightDraw); // rotate func
+                if (startes.rdy === true) {
+                    drawsquare(1, startes.i, startes.j, currObj.widthDraw, currObj.heightDraw, getRandomColor(), 1);
+                } else {
+                    alert('кончился перевый лист');
+                }
+            }
+        });
 
     });
 
@@ -1343,7 +1366,7 @@ $(document).ready(function() {
 
 
     document.getElementById('FullClear').addEventListener('click', () => {
-        clearStol();
+        clearFullStol();
 
     });
 
@@ -1357,6 +1380,14 @@ $(document).ready(function() {
     function clearStol() {
         //$('#quear1').empty();
         globmass = drowstolNotVisible(heightplant, widthplant);
+        //globobjarray = [];
+    }
+
+    function clearFullStol() {
+        $('#quear1').empty();
+        heightplant = document.getElementById('heightplant').value;
+        widthplant = document.getElementById('widthplant').value;
+        globmass = drowstol(heightplant, widthplant);
         //globobjarray = [];
     }
 
