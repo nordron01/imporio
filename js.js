@@ -14,6 +14,7 @@ $(document).ready(function() {
     let pdetalheig2 = 0;
     let pdetalwidt3 = 0;
     let pdetalheig3 = 0;
+    $('#ExecuteTest').prop("disabled", false);
 
     /*
         globobjarray = [
@@ -816,35 +817,58 @@ $(document).ready(function() {
         for (let i = 0; i < n; i++) {
             for (let j = 0; j < m; j++) {
                 if (globmass.mas[j][i] == 0) {
+                    console.log(`i=${i} j=${j}`);
                     ostao.push({ a: i, b: j, c: 0 });
                 }
             }
 
         }
+
         let k = 0;
         let now = 1;
-        for (let i = 0; i < ostao.length - 1; i++) {
-            if (ostao[i].b + 1 == ostao[i + 1].b && ostao[i].a == ostao[i + 1].a) {
+        let currentA = 0;
+        let currentB = 0
 
+        for (let i = 0; i < ostao.length - 1; i++) {
+            console.log(ostao[i]);
+            if (ostao[i].a == ostao[i + 1].a && ostao[i].b + 1 == ostao[i + 1].b) {
                 ostao[i].c = now;
                 $('#1w' + ostao[i].b + 'h' + ostao[i].a).append(now);
                 k++;
-            } else if (ostao[i + 1].b == ostao[i - k].b) {
-                ostao[i].c = now;
-                $('#1w' + ostao[i].b + 'h' + ostao[i].a).append(now);
-                k = 0;
             } else {
-                if (ostao[i].a == ostao[i + 1].a) {} else {
+
+            }
+
+
+            /*
+                if (ostao[i].b + 1 == ostao[i + 1].b && ostao[i].a == ostao[i + 1].a) {
+
                     ostao[i].c = now;
                     $('#1w' + ostao[i].b + 'h' + ostao[i].a).append(now);
-                    now++;
+                    k++;
+                } else if (ostao[i + 1].b == ostao[i - k].b) {
+                    ostao[i].c = now;
+                    $('#1w' + ostao[i].b + 'h' + ostao[i].a).append(now);
                     k = 0;
+                } else {
+                    if (ostao[i].a == ostao[i + 1].a) {
+
+                    } else {
+                        ostao[i].c = now;
+                        $('#1w' + ostao[i].b + 'h' + ostao[i].a).append(now);
+                        now++;
+                        k = 0;
+                    }
                 }
-            }
-            if (i + 1 == ostao.length - 1) {
-                ostao[i + 1].c = now;
-                $('#1w' + ostao[i + 1].b + 'h' + ostao[i + 1].a).append(now);
-            }
+                if (i + 1 == ostao.length - 1) {
+                    ostao[i + 1].c = now;
+                    $('#1w' + ostao[i + 1].b + 'h' + ostao[i + 1].a).append(now);
+                }
+            */
+
+
+
+
         }
 
         return sumSquare(ostao);
@@ -914,9 +938,9 @@ $(document).ready(function() {
     document.getElementById('Conslog').addEventListener("click", function() {
         console.log(globobjarray);
         console.log(globmass);
+        console.log(globmass.mas.flat(1));
         console.log(superResult);
         console.log(testCaseResult);
-
 
         let i = 0;
         let startes = [];
@@ -970,8 +994,10 @@ $(document).ready(function() {
 
     document.getElementById('testCaseResult').addEventListener("click", () => {
         for (let i = 0; i < testCaseResult.length; i++) {
+            console.log(Object.values(testCaseResult[i].ostatki));
             testCaseResult[i].lengthOs = Object.keys(testCaseResult[i].ostatki).length;
             testCaseResult[i].sums = Object.values(testCaseResult[i].ostatki).reduce((a, b) => a + b, 0);
+            testCaseResult[i].maxObj = getMaxOfArray(Object.values(testCaseResult[i].ostatki));
         }
 
         testCaseResult.sort((a, b) => {
@@ -1022,7 +1048,9 @@ $(document).ready(function() {
 
     });
 
-
+    function getMaxOfArray(numArray) {
+        return Math.max.apply(null, numArray);
+    }
 
 
     $("#posit").click(() => {
@@ -1335,14 +1363,6 @@ $(document).ready(function() {
         m = Math.ceil(hh / 50);
         n = Math.ceil(ww / 50);
 
-        let a = n * 22;
-        let b = m * 22;
-        let a1 = 20;
-        let b1 = 20;
-        let kva1 = "";
-        let kva2 = "";
-
-
         for (let t = 1; t < 2; t++) {
             var mas = [];
             for (let i = 0; i < m; i++) {
@@ -1397,6 +1417,116 @@ $(document).ready(function() {
         let dateB = new Date();
         console.log((dateB.getTime() - dateA.getTime()) / 1000);
     }
+
+
+    $("#Addtest").click(function() {
+        var names = $("#testname").val();
+        if (names == "" && globobjarray.length == 0) {
+            alert('Пустое название или пустой набор данных');
+        } else {
+            let val = document.getElementById('numberCase').value;
+            if (val <= testCaseResult.length) {
+                console.log(testCaseResult[val]);
+            }
+            console.log(globmass);
+            console.log(globmass.mas.fill());
+
+
+
+            var data = {};
+            data["name"] = names;
+            data["bodytest"] = globobjarray;
+            data["testcase"] = testCaseResult[val].testCase;
+            data["brain"] = globmass.mas.flat(1);
+            data["brainsres"] = globmass.mas.flat(1).reduce((acc, currVal) => {
+                return acc + currVal;
+            }) / globmass.mas.length;
+            console.log(data);
+            $.ajax({
+                url: "/collection",
+                dataType: 'json',
+                contentType: "application/json",
+                type: 'POST',
+                data: JSON.stringify(data),
+                success: (data) => {
+                    console.log(data);
+                }
+            });
+        }
+    });
+
+    $("#SearhTest").click(function() {
+        var names = $("#testname").val();
+        if (names == "") {
+            alert("Текст поиска пуст");
+        } else {
+            var data = {};
+            data["name"] = names;
+            $.ajax({
+                url: "/searchonetest",
+                dataType: 'json',
+                contentType: "application/json",
+                type: 'POST',
+                data: JSON.stringify(data),
+                success: (data) => {
+                    console.log(data);
+                    console.log(data.length);
+                    if (data.length > 0 || data == null || data == undefined) {
+                        globobjarray = data[0]["bodytest"];
+                        $('#ExecuteTest').prop("disabled", false);
+                    } else {
+                        alert("Такой тест не найден");
+                    }
+
+                }
+
+            });
+        }
+
+    })
+
+    $('#ExecuteTest').click(function() {
+        console.log(globobjarray);
+
+        var i = 0;
+        var testings = 0;
+        var startes = [];
+        var acreage = 0;
+        let heightDrawSQ;
+        let widthDrawSQ;
+        for (let i = 0; i < globobjarray.length; i++) {
+            if (globobjarray[i].type == "square") {
+                heightDrawSQ = preproperty(globobjarray[i].height);
+                widthDrawSQ = preproperty(globobjarray[i].width);
+                drawsquaretostol(heightDrawSQ, widthDrawSQ);
+            }
+        }
+        $('#ExecuteTest').prop("disabled", true);
+
+    });
+
+
+    $("#testajax").click(function() {
+        console.log('click')
+        var data = {};
+        $.ajax({
+            url: "/user",
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST',
+            data: JSON.stringify(data),
+            success: (data) => {
+                console.log(data[0]);
+            }
+        });
+    })
+
+
+
+
+
+
+
 
 
 });

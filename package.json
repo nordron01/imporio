@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/nordron01/imporio#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "brain": "^1.0.0",
+    "brainjs": "^0.7.4",
+    "express": "^4.17.1",
+    "mnist": "^1.1.0",
+    "mongodb": "^3.5.9"
   }
 }

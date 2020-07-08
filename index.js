@@ -4,36 +4,45 @@ const bodyParser = require('body-parser');
 const db = require('./routes/db');
 var app = express();
 const port = 8000;
-
+var mnist = require('mnist'); // this line is not needed in the browser
 var brain = require('brain.js');
 const fs = require('fs');
 
+let dataA = new Date();
+
 var net = new brain.NeuralNetwork();
+
 /*
-net.train(trainingSet,
-    {
-        errorThresh: 0.005,  // error threshold to reach
-        iterations: 100,   // maximum training iterations
-        log: true,           // console.log() progress periodically
-        logPeriod: 1,       // number of iterations between logging
-        learningRate: 0.3    // learning rate
-    }
-);
-*/
-
-var mnist = require('mnist'); // this line is not needed in the browser
-
 var set = mnist.set(1000, 1);
 console.log(set.training);
-//const trainingSet = set.training;
+const trainingSet = set.training;
 
-net.train([{ input: [0, 0], output: [0] },
-    { input: [0, 1], output: [1] },
-    { input: [1, 0], output: [1] },
-    { input: [1, 1], output: [0] }
-]);
+net.train(trainingSet, {
+    errorThresh: 0.005, // error threshold to reach
+    iterations: 100, // maximum training iterations
+    log: true, // console.log() progress periodically
+    logPeriod: 1, // number of iterations between logging
+    learningRate: 0.3 // learning rate
+});
+*/
 
-var output = net.run([1, 0]); // [0.987]
+
+
+net.trainAsync([{ input: [1, 1, 0, 0], output: [1, 1, 1, 1] },
+    { input: [0, 0, 0, 0], output: [0, 0, 0, 0] },
+    { input: [0, 1, 1, 0], output: [0, 1, 1, 0] },
+    { input: [1, 0, 0, 1], output: [1, 1, 1, 1] }
+]).then((res) => {
+    console.log(res)
+}).catch((err) => { console.log(err) });
+
+let dataB = new Date();
+
+console.log('time=', dataB.getTime() - dataA.getTime());
+
+
+
+var output = net.run([0, 0, 1, 1]); // [0.987]
 console.log(output);
 
 //app.use(bodyParser.urlencoded({ extended: true }));
@@ -70,11 +79,7 @@ MongoClient.connect(db.url, { useNewUrlParser: true }, (err, database) => {
             console.log("1 document inserted");
             //	db.close();
         });
-
-
         response.json({ "response": "TRUE" });
-
-
     });
 
 
