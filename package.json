@@ -20,7 +20,7 @@
     "body-parser": "^1.19.0",
     "brain": "^1.0.0",
     "brainjs": "^0.7.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mnist": "^1.1.0",
     "mongodb": "^3.5.9"
   }
